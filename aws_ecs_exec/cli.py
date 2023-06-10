@@ -4,6 +4,7 @@ import logging
 import os
 import shlex
 from functools import partial
+from importlib.metadata import version
 from typing import Callable
 
 import boto3
@@ -96,6 +97,11 @@ def get_args() -> argparse.Namespace:
         action="store_true",
         default=False,
     )
+    parser.add_argument(
+        "--version",
+        help="Print the current version of aws-ecs-exec and exit",
+        action="store_true",
+    )
     return parser.parse_args()
 
 
@@ -142,6 +148,10 @@ def entrypoint():
     """Execute a command in an AWS ECS Task."""
     try:
         args = get_args()
+
+        if args.version:
+            print("Version:", version("aws-ecs-exec"))
+            return 0
 
         if args.verbose:
             logger.setLevel(logging.DEBUG)
