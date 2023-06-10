@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aws-ecs-exec"
-version = "0.1.0rc2"
+version = "0.1.0"
 description = "A cli tool to conveniently execute commands in AWS ECS Tasks"
 authors = ["Nat Gordon <nat@nattyg93.com.au>"]
 license = "MIT"
