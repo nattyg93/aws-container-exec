@@ -20,6 +20,6 @@ jobs:
       - name: Install poetry
         run: python3.10 -m venv poetry-venv && ./poetry-venv/bin/pip install poetry
       - name: Build package with poetry
-        run: ./poetry-venvbin/poetry build
+        run: ./poetry-venv/bin/poetry build
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
