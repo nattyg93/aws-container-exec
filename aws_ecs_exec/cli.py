@@ -85,6 +85,11 @@ def get_args() -> argparse.Namespace:
         action="append",
     )
     parser.add_argument(
+        "--colors",
+        help="Whether to colorise output",
+        action=argparse.BooleanOptionalAction,
+    )
+    parser.add_argument(
         "-v",
         "--verbose",
         help="Log debug statements (default: False)",
@@ -140,6 +145,12 @@ def entrypoint():
 
         if args.verbose:
             logger.setLevel(logging.DEBUG)
+
+        if args.colors is not None:
+            if args.colors:
+                os.environ.pop("NO_COLOR", None)
+            else:
+                os.environ["NO_COLOR"] = "true"
 
         try:
             aws_profile = get_user_choice(
